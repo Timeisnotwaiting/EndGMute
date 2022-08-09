@@ -17,5 +17,5 @@ async def get_id(_: Client, m: Message):
                 id = None
                 return await m.reply("Give username or id !")
     else:
-        await m.reply(/mute | /unmute @----- | id ")
+        await m.reply("/mute | /unmute @----- | id ")
         
