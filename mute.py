@@ -14,7 +14,7 @@ async def gmute(_, m):
     if not id:
         return await m.reply(r)
     muted = await is_muted(id)
-    if m.text.split()[0][1].lower == "u":
+    if m.text.split()[0][1].lower() == "u":
         if muted:
             ok = await m.reply("unmuting user.... ")
             try:
