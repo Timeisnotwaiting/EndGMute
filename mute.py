@@ -9,3 +9,4 @@ async def gmute(_, m):
     sudo = await is_sudo(m.from_user.id)
     if not sudo:
         return
+    
