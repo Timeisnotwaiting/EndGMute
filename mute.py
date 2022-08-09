@@ -13,6 +13,9 @@ async def gmute(_, m):
     id, r = await get_id(_, m)
     if not id:
         return await m.reply(r)
+    sudo_check = await is_sudo(id)
+    if sudo_check:
+        return await m.reply("Can't gmute sudo users.... !")
     muted = await is_muted(id)
     if m.text.split()[0][1].lower() == "u":
         if muted:
