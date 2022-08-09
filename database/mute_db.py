@@ -13,3 +13,9 @@ async def unmute_user(a: int):
     if muted:
         return await mutedb.delete_one({"a": a})
     return
+
+async def is_muted(a: int):
+    muted = mutedb.find_one({"a": a})
+    if muted:
+        return True
+    return False
