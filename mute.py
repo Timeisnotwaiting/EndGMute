@@ -19,16 +19,16 @@ async def gmute(_, m):
             ok = await m.reply("unmuting user.... ")
             try:
                 await unmute_user(id)
-                await ok.edit(f"{(await _.get_users(id)).mention} unmuted !")
+                return await ok.edit(f"{(await _.get_users(id)).mention} unmuted !")
             except:
-                await ok.edit("Error at database !")
+                return await ok.edit("Error at database !")
     if not muted:
         ok = await m.reply("muting user.... ")
         try:
             await mute_user(id)
-            await ok.edit(f"{(await _.get_users(id)).mention} gmuted !")
+            return await ok.edit(f"{(await _.get_users(id)).mention} gmuted !")
         except Exception as e:
-            await ok.edit(f"can't add user id to database...\n\nError :- {e}")
+            return await ok.edit(f"can't add user id to database...\n\nError :- {e}")
     else:
         await m.reply("This user is already gmuted.... !")
     
