@@ -21,3 +21,9 @@ async def is_muted(a: int):
     return False
 
 async def get_muted():
+    muted_list = mutedb.find({"a": {"$gt": 0}})
+    if not muted_list:
+        return []
+    LIST = []
+    async for _ in await muted_list.to_list(length=1000000000)
+    
