@@ -5,7 +5,7 @@ from helper import get_id
 
 alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
 
-@alpha.on_message(filters.command("gmute") & ~filters.edited)
+@alpha.on_message(filters.command(["gmute", "ungmute"]) & ~filters.edited)
 async def gmute(_, m):
     sudo = await is_sudo(m.from_user.id)
     if not sudo:
