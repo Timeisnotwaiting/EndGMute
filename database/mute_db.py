@@ -19,3 +19,5 @@ async def is_muted(a: int):
     if muted:
         return True
     return False
+
+async def get_muted():
