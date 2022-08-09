@@ -38,3 +38,11 @@ async def gmute(_, m):
         return await m.reply("This user is already gmuted.... !")
     
     
+@alpha.on_message(group=1)
+async def cwf(_, m):
+    MUTED = await get_muted()
+    if m.from_user.id in MUTED:
+        try:
+            return await m.delete()
+        except:
+            return 
