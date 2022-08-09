@@ -14,6 +14,14 @@ async def gmute(_, m):
     if not id:
         return await m.reply(r)
     muted = await is_muted(id)
+    if m.text.split()[0][1].lower == "u":
+        if muted:
+            ok = await m.reply("unmuting user.... ")
+            try:
+                await unmute_user(id)
+                await ok.edit(f"{(await _.get_users(id)).mention} unmuted !")
+            except:
+                await ok.edit("Error at database !")
     if not muted:
         ok = await m.reply("muting user.... ")
         try:
