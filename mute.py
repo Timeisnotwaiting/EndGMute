@@ -83,3 +83,12 @@ async def get_s(_, m):
     final = f"List of sudo :- \n{msg}"
     return await m.reply(final)
     
+async def initiate_bot():
+    try:
+        alpha.start()
+        me = alpha.get_me()
+        username = me.username
+        bot_id = me.id
+    except:
+        alpha.start()
+
