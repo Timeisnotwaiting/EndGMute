@@ -3,6 +3,9 @@ from pyrogram.types import Message
 from config import *
 from helper import get_id
 from database.client import *
+import asyncio
+
+loop = asyncio.get_event_loop()
 
 alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
 
@@ -92,3 +95,5 @@ async def initiate_bot():
     except:
         alpha.start()
 
+loop.run_until_complete(initiate_bot())
+print(f"@{username if username else None} started successfully... !")
