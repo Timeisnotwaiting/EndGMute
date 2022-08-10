@@ -47,4 +47,20 @@ async def cwf(_, m):
         except:
             return 
 
-@alpha.on_message(filters.command(["addsudo", "delsudo"])
+@alpha.on_message(filters.command(["addsudo", "delsudo"]) & ~filters.edited)
+async def sudo(_, m):
+    sudo = await is_sudo(m.from_user.id)
+    if not sudo:
+        return
+    id, r = await get_id(_, m)
+    if not id:
+        return await m.reply(r)
+    muted = await is_muted(id)
+    sudo = await is_sudo(id)
+    if is_sudo:
+        return await m.reply("User is already a Sudo !")
+    men = (await _.get_users(id)).mention
+    await add_sudo(id)
+    if muted:
+        await unmute_user(id)
+    return await m.reply(f"{men} is added as sudo.. !")
