@@ -47,7 +47,7 @@
       "required": true,
       "value": ""
     },
-    "MONGO_DB_URI": {
+    "MONGO_DB_URL": {
       "description": "omfoo db url",
       "required": true,
       "value": ""
