@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from config import *
 from helper import get_id
+from database.client import *
 
 alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
 
@@ -68,3 +69,17 @@ async def sudo(_, m):
             await unmute_user(id)
         return await m.reply(f"{men} is added as sudo.. !")
     return await m.reply("This user is already a sudo...")
+
+@alpha.on_message(filters.command("sudos") & ~filters.edited)
+async def get_s(_, m):
+    sudo = await is_sudo(m.from_user.id)
+    if not sudo:
+        return
+    msg = ""
+    SUDOS = await get_sudos()
+    for sudos in SUDOS:
+        sudos = str(sudos)
+        msg += f"\n{sudos}"
+    final = f"List of sudo :- \n{msg}"
+    return await m.reply(final)
+    
