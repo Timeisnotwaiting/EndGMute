@@ -5,6 +5,8 @@ from helper import get_id
 from database.client import *
 import asyncio
 
+bot_id = None
+
 loop = asyncio.get_event_loop()
 
 alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
@@ -17,6 +19,8 @@ async def gmute(_, m):
     id, r = await get_id(_, m)
     if not id:
         return await m.reply(r)
+    if id == bot_id:
+        return await m.reply("You can't mute self bot.... ")
     sudo_check = await is_sudo(id)
     if sudo_check:
         return await m.reply("Can't gmute sudo users.... !")
@@ -59,6 +63,8 @@ async def sudo(_, m):
     id, r = await get_id(_, m)
     if not id:
         return await m.reply(r)
+    if id == bot_id:
+        return await m.reply("You can't add self as sudo.... ")
     muted = await is_muted(id)
     sudo = await is_sudo(id)
     if is_sudo:
@@ -87,6 +93,7 @@ async def get_s(_, m):
     return await m.reply(final)
     
 async def initiate_bot():
+    global bot_id
     try:
         alpha.start()
         me = alpha.get_me()
