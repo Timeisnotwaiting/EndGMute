@@ -103,6 +103,7 @@ async def initiate_bot():
         bot_id = me.id
     except:
         alpha.start()
+    return print(f"@{username if username else None} started successfully... !")
 
 loop.run_until_complete(initiate_bot())
-print(f"@{username if username else None} started successfully... !")
+
