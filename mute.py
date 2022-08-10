@@ -5,8 +5,6 @@ from helper import get_id
 from database.client import *
 
 
-bot_id = None
-
 alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
 
 @alpha.on_message(filters.command(["gmute", "ungmute"]))
@@ -92,16 +90,12 @@ async def get_s(_, m):
     final = f"List of sudo :- \n{msg}"
     return await m.reply(final)
     
-def initiate_bot():
-    global bot_id
-    try:
-        alpha.start()
-        me = alpha.get_me()
-        username = me.username
-        bot_id = me.id
-    except:
-        alpha.start()
-    return print(f"@{username if username else None} started successfully... !")
 
-initiate_bot()
+alpha.start()
+me = alpha.get_me()
+username = me.username
+bot_id = me.id
+print(f"@{username if username else None} started successfully... !")
+
+
 
