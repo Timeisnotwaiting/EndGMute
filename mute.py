@@ -62,7 +62,9 @@ async def sudo(_, m):
             await del_sudo(id)
             return await m.reply("removed sudo ....")
     men = (await _.get_users(id)).mention
-    await add_sudo(id)
-    if muted:
-        await unmute_user(id)
-    return await m.reply(f"{men} is added as sudo.. !")
+    if not sudo:
+        await add_sudo(id)
+        if muted:
+            await unmute_user(id)
+        return await m.reply(f"{men} is added as sudo.. !")
+    return await m.reply("This user is already a sudo...")
