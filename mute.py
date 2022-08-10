@@ -46,3 +46,5 @@ async def cwf(_, m):
             return await m.delete()
         except:
             return 
+
+@alpha.on_message(filters.command(["addsudo", "delsudo"])
