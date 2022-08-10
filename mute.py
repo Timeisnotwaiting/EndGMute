@@ -3,11 +3,9 @@ from pyrogram.types import Message
 from config import *
 from helper import get_id
 from database.client import *
-import asyncio
+
 
 bot_id = None
-
-loop = asyncio.get_event_loop()
 
 alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
 
@@ -94,16 +92,16 @@ async def get_s(_, m):
     final = f"List of sudo :- \n{msg}"
     return await m.reply(final)
     
-async def initiate_bot():
+def initiate_bot():
     global bot_id
     try:
-        await alpha.start()
+        alpha.start()
         me = alpha.get_me()
         username = me.username
         bot_id = me.id
     except:
-        await alpha.start()
+        alpha.start()
     return print(f"@{username if username else None} started successfully... !")
 
-loop.run_until_complete(initiate_bot())
+initiate_bot()
 
