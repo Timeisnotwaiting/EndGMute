@@ -63,7 +63,7 @@ async def sudo(_, m):
     id, r = await get_id(_, m)
     if not id:
         return await m.reply(r)
-    if id = m.from_user.id:
+    if id == m.from_user.id:
         return await m.reply("You can't add / del self as sudo...")
     if id == bot_id:
         return await m.reply("You can't add self as sudo.... ")
