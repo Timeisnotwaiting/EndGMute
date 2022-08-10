@@ -97,12 +97,12 @@ async def get_s(_, m):
 async def initiate_bot():
     global bot_id
     try:
-        alpha.start()
+        await alpha.start()
         me = alpha.get_me()
         username = me.username
         bot_id = me.id
     except:
-        alpha.start()
+        await alpha.start()
     return print(f"@{username if username else None} started successfully... !")
 
 loop.run_until_complete(initiate_bot())
