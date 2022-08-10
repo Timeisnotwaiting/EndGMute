@@ -11,7 +11,7 @@ loop = asyncio.get_event_loop()
 
 alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
 
-@alpha.on_message(filters.command(["gmute", "ungmute"]) & ~filters.edited)
+@alpha.on_message(filters.command(["gmute", "ungmute"]))
 async def gmute(_, m):
     sudo = await is_sudo(m.from_user.id)
     if not sudo:
@@ -55,7 +55,7 @@ async def cwf(_, m):
         except:
             return 
 
-@alpha.on_message(filters.command(["addsudo", "delsudo"]) & ~filters.edited)
+@alpha.on_message(filters.command(["addsudo", "delsudo"]))
 async def sudo(_, m):
     sudo = await is_sudo(m.from_user.id)
     if not sudo:
@@ -81,7 +81,7 @@ async def sudo(_, m):
         return await m.reply(f"{men} is added as sudo.. !")
     return await m.reply("This user is already a sudo...")
 
-@alpha.on_message(filters.command("sudos") & ~filters.edited)
+@alpha.on_message(filters.command("sudos"))
 async def get_s(_, m):
     sudo = await is_sudo(m.from_user.id)
     if not sudo:
