@@ -58,6 +58,9 @@ async def sudo(_, m):
     muted = await is_muted(id)
     sudo = await is_sudo(id)
     if is_sudo:
+        if m.text.split()[0][1].lower() == "d":
+            await del_sudo(id)
+            
         return await m.reply("User is already a Sudo !")
     men = (await _.get_users(id)).mention
     await add_sudo(id)
