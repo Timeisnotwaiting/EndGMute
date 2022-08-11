@@ -1,4 +1,4 @@
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
 from pyrogram.types import Message
 from config import *
 from helper import get_id
@@ -95,7 +95,7 @@ alpha.start()
 me = alpha.get_me()
 username = me.username
 bot_id = me.id
+idle()
 print(f"@{username if username else None} started successfully... !")
-
 
 
