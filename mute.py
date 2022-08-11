@@ -91,11 +91,11 @@ async def get_s(_, m):
     return await m.reply(final)
     
 
-alpha.start()
+alpha.run()
 me = alpha.get_me()
 username = me.username
 bot_id = me.id
-idle()
+
 print(f"@{username if username else None} started successfully... !")
 
 
