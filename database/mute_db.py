@@ -25,7 +25,7 @@ async def get_muted():
     if not muted_list:
         return []
     LIST = []
-    async for _ in await muted_list.to_list(length=1000000000):
+    for _ in await muted_list.to_list(length=1000000000):
         LIST.append(_["a"])
     return LIST
     
