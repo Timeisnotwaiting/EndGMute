@@ -4,7 +4,7 @@ from config import *
 from database.client import *
 
 
-alpha = Client(":Alpha:", API_ID, API_HASH, BOT_TOKEN)
+alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 async def get_id(_: Client, m: Message):
     if m.reply_to_message:
