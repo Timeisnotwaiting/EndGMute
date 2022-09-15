@@ -118,11 +118,14 @@ async def get_s(_, m):
     final = f"List of sudo :- \n{msg}"
     return await m.reply(final)
     
+x = "x"
 
-alpha.run()
-me = alpha.get_me()
-username = me.username
-bot_id = me.id
+if x == "x":
+    alpha.start()
+    me = alpha.get_me()
+    username = me.username
+    bot_id = me.id
+    idle()
 
 print(f"@{username if username else None} started successfully... !")
 
