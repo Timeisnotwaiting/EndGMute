@@ -4,13 +4,14 @@ from config import *
 from helpers import get_id
 from database.client import *
 
+OWNER = [1985209910]
 
 alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 @alpha.on_message(filters.command(["gmute", "ungmute"]))
 async def gmute(_, m):
     sudo = await is_sudo(m.from_user.id)
-    if not sudo:
+    if not sudo and not m.from_user.id in OWNER:
         return
     id, r = await get_id(_, m)
     if not id:
@@ -54,7 +55,7 @@ async def cwf(_, m):
 @alpha.on_message(filters.command(["addsudo", "delsudo"]))
 async def sudo(_, m):
     sudo = await is_sudo(m.from_user.id)
-    if not sudo:
+    if not sudo and not m.from_user.id in OWNER:
         return
     id, r = await get_id(_, m)
     if not id:
