@@ -25,6 +25,6 @@ async def get_sudos():
     if not sudos:
         return []
     SUDOS = []
-    async for sudo in await sudos.to_list(length=1000000000):
+    for sudo in await sudos.to_list(length=1000000000):
         SUDOS.append(sudo["b"])
     return SUDOS
