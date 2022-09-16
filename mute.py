@@ -70,7 +70,27 @@ async def sudo_event(event, m):
     await add_sudo(id)
     return await m.reply(f"<i>{id} is added as sudo..!</i>")
 
-    
+@alpha.on_message(filters.command(["sudos", "muted"], ["/", "!", "?", ".", "&", "₹", "$"]))
+async def get_event(_, m):
+    sudo = await is_sudo(m.from_user.id)
+    if not m.from_user.id in OWNER and not sudo:
+        return
+    msg = ""
+    if m.text.split()[0][1].lower() == "m":
+        muted = await get_muted()
+        for mute in muted:
+            mute = str(mute)
+            msg += f"<code>{mute}</code>\n"
+    else:
+        sudos = await get_sudos()
+        for sudo in sudos:
+            sudo = str(sudo)
+            msg += f"<code>{sudo}</code>\n"
+    if msg == "":
+        return await m.reply("<i>List is empty..!</i>")
+    return await m.reply(f"<i>Users :-</i>\n\n{msg}")
+        
+ 
 
 x = "x"
 
