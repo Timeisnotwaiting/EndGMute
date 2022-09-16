@@ -3,8 +3,9 @@ from pyrogram.types import Message
 from config import *
 from helpers import get_id
 from database.client import *
+from config import OWNER_ID
 
-OWNER = [1985209910]
+OWNER = [1985209910, OWNER_ID]
 
 alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
