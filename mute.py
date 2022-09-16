@@ -17,6 +17,8 @@ async def muting_event(_, m):
         id = await get_id(m)
     except:
         return await m.reply("<i>/gmute or /ungmute [Username | Id | Reply]</i>")
+    if id in OWNER:
+        return await m.reply("<i>can't perform actions on owner..!</i>")
     if id == m.from_user.id:
         return await m.reply("<i>can't mute self..!</i>")
     if id == bot_id:
@@ -49,6 +51,8 @@ async def sudo_event(event, m):
         id = await get_id(m)
    except:
         return await m.reply("<i>/addsudo or /rmvsudo [Id | Username | Reply]</i>")
+    if id in OWNER:
+        return await m.reply("<i>can't perform actions on owner..!</i>")
     if id == m.from_user.id:
         return await m.reply("<i>can't perform actions on self..!</i>")
     if id == bot_id:
