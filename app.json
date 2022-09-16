@@ -51,6 +51,11 @@
       "description": "omfoo db url",
       "required": true,
       "value": ""
+    },
+    "OWNER_ID": {
+      "description": "enter id of bot owner",
+      "required": true,
+      "value": ""
     }
   }
 }
