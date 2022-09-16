@@ -17,8 +17,8 @@ async def unmute_user(a: int):
 async def is_muted(a: int):
     muted = mutedb.find_one({"a": a})
     if muted:
-        return True
-    return False
+        return False
+    return True
 
 async def get_muted():
     muted_list = mutedb.find({"a": {"$gt": 0}})
