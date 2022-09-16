@@ -8,7 +8,7 @@ OWNER = [1985209910]
 
 alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-@alpha.on_message(filters.command(["gmute", "ungmute"], ["/", "!", ".", "?"]))
+@alpha.on_message(filters.command(["gmute", "ungmute"], ["/", "!", ".", "?", "&", "₹", "$"]))
 async def muting_event(_, m):
     sudo = await is_sudo(m.from_user.id)
     if not m.from_user.id in OWNER and not sudo:
@@ -41,7 +41,31 @@ async def cwf(_, m):
         except:
             pass
 
+@alpha.on_message(filters.command(["addsudo", "rmvsudo"], ["/", "!", "?", ".", "&", "₹", "$"]))
+async def sudo_event(event, m):
+    if not m.from_user.id in OWNER:
+        return
+    try:
+        id = await get_id(m)
+   except:
+        return await m.reply("<i>/addsudo or /rmvsudo [Id | Username | Reply]</i>")
+    if id == m.from_user.id:
+        return await m.reply("<i>can't perform actions on self..!</i>")
+    if id == bot_id:
+        return await m.reply("<i>can't perform actions on self bot...!</i>")
+    sudo = await is_sudo(id)
+    muted = await is_muted(id)
+    if m.text.split()[0][1].lower() == "r":
+        if not sudo:
+            return await m.reply(f"<i>{id} isn't sudo..!</i>")
+        await del_sudo(id)
+        return await m.reply(f"<i>{id} is removed from sudo...!</i>")
+    if sudo:
+        return await m.reply(f"<i>{id} already a sudo..!</i>")
+    await add_sudo(id)
+    return await m.reply(f"<i>{id} is added as sudo..!</i>")
 
+    
 
 x = "x"
 
