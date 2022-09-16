@@ -50,7 +50,7 @@ async def sudo_event(event, m):
         return
     try:
         id = await get_id(m)
-   except:
+    except:
         return await m.reply("<i>/addsudo or /rmvsudo [Id | Username | Reply]</i>")
     if id in OWNER:
         return await m.reply("<i>can't perform actions on owner..!</i>")
