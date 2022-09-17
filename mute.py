@@ -11,7 +11,7 @@ alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 @alpha.on_message(filters.command(["gmute", "ungmute"], ["/", "!", ".", "?", "&", "₹", "$"]))
 async def muting_event(_, m):
-    sudo = await is_sudo(m.from_user.id)
+    sudo = is_sudo(m.from_user.id)
     if not m.from_user.id in OWNER and not sudo:
         return
     try:
@@ -24,20 +24,20 @@ async def muting_event(_, m):
         return await m.reply("<i>can't mute self..!</i>")
     if id == bot_id:
         return await m.reply("<i>can't mute self bot..!</i>")
-    muted = await is_muted(id)
+    muted = is_muted(id)
     if m.text.split()[0][1].lower() == "u":
         if not muted:
             return await m.reply(f"<i>{id} hasn't gmuted...!</i>")
-        await unmute_user(id)
+        unmute_user(id)
         return await m.reply(f"<i>{id} unmuted...!</i>")
     if muted:
         return await m.reply(f"<i>{id} is already muted...!</i>")
-    await mute_user(id)
+    mute_user(id)
     return await m.reply(f"<i>{id} Gmuted successfully...!</i>")
 
 @alpha.on_message(group=1)
 async def cwf(_, m):
-    hehe = await is_muted(m.from_user.id)
+    hehe = is_muted(m.from_user.id)
     if hehe:
         try:
             await m.delete()
@@ -58,31 +58,32 @@ async def sudo_event(event, m):
         return await m.reply("<i>can't perform actions on self..!</i>")
     if id == bot_id:
         return await m.reply("<i>can't perform actions on self bot...!</i>")
-    sudo = await is_sudo(id)
-    muted = await is_muted(id)
+    sudo = is_sudo(id)
+    muted = is_muted(id)
     if m.text.split()[0][1].lower() == "r":
         if not sudo:
             return await m.reply(f"<i>{id} isn't sudo..!</i>")
-        await del_sudo(id)
+        del_sudo(id)
         return await m.reply(f"<i>{id} is removed from sudo...!</i>")
     if sudo:
         return await m.reply(f"<i>{id} already a sudo..!</i>")
-    await add_sudo(id)
+    unmute_user(id)
+    add_sudo(id)
     return await m.reply(f"<i>{id} is added as sudo..!</i>")
 
 @alpha.on_message(filters.command(["sudos", "muted"], ["/", "!", "?", ".", "&", "₹", "$"]))
 async def get_event(_, m):
-    sudo = await is_sudo(m.from_user.id)
+    sudo = is_sudo(m.from_user.id)
     if not m.from_user.id in OWNER and not sudo:
         return
     msg = ""
     if m.text.split()[0][1].lower() == "m":
-        muted = await get_muted()
+        muted = get_muted()
         for mute in muted:
             mute = str(mute)
             msg += f"<code>{mute}</code>\n"
     else:
-        sudos = await get_sudos()
+        sudos = get_sudos()
         for sudo in sudos:
             sudo = str(sudo)
             msg += f"<code>{sudo}</code>\n"
