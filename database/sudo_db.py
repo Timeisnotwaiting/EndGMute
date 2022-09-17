@@ -1,30 +1,18 @@
-from . import db
+from . import BASE, SESSION
+from .mute_db import Column, BigInteger, threading
 
-sudodb = db.sudo
+class Sudo(BASE):
+    __tablename__ = "sudo"
 
-async def add_sudo(b: int):
-    sudo = sudodb.find_one({"b": b})
-    if not sudo:
-        return await sudodb.insert_one({"b": b})
-    return
+    id = Column(BigInteger, primary_key=True)
 
-async def is_sudo(b: int):
-    is_sudo = sudodb.find_one({"b": b})
-    if is_sudo:
-        return True
-    return False
+    def __init__(self, id):
+        self.id = id
 
-async def del_sudo(b: int):
-    sudo = sudodb.find_one({"b": b})
-    if sudo:
-        return await sudodb.delete_one({"b": b})
-    return
+Sudo.__table__.create(checkfirst=True)
 
-async def get_sudos():
-    sudos = sudodb.find({"b": {"$gt": 0}})
-    if not sudos:
-        return []
-    SUDOS = []
-    for sudo in await sudos.to_list(length=1000000000):
-        SUDOS.append(sudo["b"])
-    return SUDOS
+
+
+
+
+    
