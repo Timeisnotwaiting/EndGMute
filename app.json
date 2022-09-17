@@ -49,8 +49,8 @@
     },
     "MONGO_DB_URL": {
       "description": "omfoo db url",
-      "required": true,
-      "value": ""
+      "required": falde,
+      "value": "Don't change this"
     },
     "OWNER_ID": {
       "description": "enter id of bot owner",
