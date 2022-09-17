@@ -41,7 +41,7 @@ def get_muted():
         return []
     Hehe = []
     for x in all:
-        Hehe.append(x["id"])
+        Hehe.append(x.id)
     return Hehe
 
 
