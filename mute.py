@@ -71,27 +71,34 @@ async def sudo_event(event, m):
     add_sudo(id)
     return await m.reply(f"<i>{id} is added as sudo..!</i>")
 
-@alpha.on_message(filters.command(["sudos", "muted"], ["/", "!", "?", ".", "&", "₹", "$"]))
+@alpha.on_message(filters.command("sudos", ["/", "!", "?", ".", "&", "₹", "$"]))
 async def get_event(_, m):
     sudo = is_sudo(m.from_user.id)
     if not m.from_user.id in OWNER and not sudo:
         return
     msg = ""
-    if m.text.split()[0][1].lower() == "m":
-        muted = get_muted()
-        for mute in muted:
-            mute = str(mute)
-            msg += f"<code>{mute}</code>\n"
-    else:
-        sudos = get_sudos()
-        for sudo in sudos:
-            sudo = str(sudo)
-            msg += f"<code>{sudo}</code>\n"
+    sudos = get_sudos()
+    for sudo in sudos:
+        sudo = str(sudo)
+        msg += f"<code>{sudo}</code>\n"
     if msg == "":
-        return await m.reply("<i>List is empty..!</i>")
+        return await m.reply("<i>Sudo List is empty..!</i>")
     return await m.reply(f"<i>Users :-</i>\n\n{msg}")
         
- 
+
+@alpha.on_message(filters.command("muted", ["/", "!", "?", ".", "&", "₹", "$"]))
+async def get__event(_, m):
+    muted = is_muted(m.from_user.id)
+    if not m.from_user.id in OWNER and not sudo:
+        return
+    msg = ""
+    sudos = get_muted()
+    for sudo in sudos:
+        sudo = str(sudo)
+        msg += f"<code>{sudo}</code>\n"
+    if msg == "":
+        return await m.reply("<i>Muted List is empty..!</i>")
+    return await m.reply(f"<i>Users :-</i>\n\n{msg}")
 
 x = "x"
 
@@ -100,8 +107,8 @@ if x == "x":
     me = alpha.get_me()
     username = me.username
     bot_id = me.id
+    print(f"@{username if username else None} started successfully... !")
     idle()
 
-print(f"@{username if username else None} started successfully... !")
 
 
