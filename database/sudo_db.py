@@ -39,7 +39,7 @@ def get_sudos():
         return []
     Lmao = []
     for sudo in sudos:
-        Lmao.append(sudo["id"])
+        Lmao.append(sudo.id)
     return Lmao
 
 
