@@ -1,4 +1,5 @@
 from pyrogram.types import Message
+from database.client import get_flood_mode, set_flood_mode
 
 async def get_id(m: Message):
     if not m.reply_to_message:
