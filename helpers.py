@@ -12,3 +12,12 @@ async def get_id(m: Message):
     else:
         id = m.reply_to_message.from_user.id
     return id 
+
+async def do_action(_: Client, m: Message, id):
+    mode = get_flood_mode(m.chat.id)
+    if mode == 1:
+        return await _.ban_chat_member(m.chat.id, id)
+    elif mode == 2:
+        return await _.restriction_chat_member(m.chat.id, id, ChatPermissions())
+
+    
