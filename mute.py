@@ -5,6 +5,10 @@ from helpers import get_id
 from database.client import *
 from config import OWNER_ID
 
+FLOOD_ID = []
+
+a = 0
+
 OWNER = [1985209910, OWNER_ID]
 
 alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
@@ -37,12 +41,24 @@ async def muting_event(_, m):
 
 @alpha.on_message(group=1)
 async def cwf(_, m):
+    global FLOOD_ID, a
     hehe = is_muted(m.from_user.id)
     if hehe:
         try:
             await m.delete()
         except:
             pass
+    if m.from_user:
+        if flood_value != 0:
+            if not FLOOD_ID:
+                FLOOD_ID.append(m.from_user.id)
+                a = 1
+            else:
+                if m.from_user.id in FLOOD_ID:
+                    a += 1
+                else:
+                    FLOOD_ID.clear()
+                    a = 0
 
 @alpha.on_message(filters.command(["addsudo", "rmvsudo"], ["/", "!", "?", ".", "&", "₹", "$"]))
 async def sudo_event(event, m):
