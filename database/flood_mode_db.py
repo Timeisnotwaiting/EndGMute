@@ -15,7 +15,7 @@ class FloodMode(BASE):
 
 Flood.__table__.create(checkfirst=True)
 
-def get_flood(chat_id):
+def get_flood_mode(chat_id):
     get = SESSION.query(FloodMode).all()
     if not get:
         return None
@@ -25,7 +25,7 @@ def get_flood(chat_id):
             FLOOD_VALUE.append(x.value)
     return int(FLOOD_VALUE[0])
 
-def set_flood(chat_id, value):
+def set_flood_mode(chat_id, value):
     flood = get_flood(chat_id)
     if flood:
         get = SESSION.query(FloodMode).get((chat_id, flood))
