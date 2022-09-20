@@ -58,7 +58,8 @@ async def cwf(_, m):
                     a += 1
                 else:
                     FLOOD_ID.clear()
-                    a = 0
+                    FLOOD_ID.append(m.from_user.id)
+                    a = 1
 
 @alpha.on_message(filters.command(["addsudo", "rmvsudo"], ["/", "!", "?", ".", "&", "₹", "$"]))
 async def sudo_event(event, m):
