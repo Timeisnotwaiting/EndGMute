@@ -21,4 +21,4 @@ async def do_action(_: Client, m: Message, id):
     elif mode == 2:
         return await _.restriction_chat_member(m.chat.id, id, ChatPermissions())
 
-    
+async def set_chat_flood
