@@ -32,7 +32,7 @@ async def set_chat_flood(_, m):
         return await m.reply(f"<i>/setflood < value ></i>")
     try:
         set_flood(chat_id, value)
-    except:
+    except Exception as e:
         return await m.reply(e)
     return await m.reply(f"<i>flood value set to {value}</i>")
 
