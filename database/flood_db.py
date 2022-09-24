@@ -21,9 +21,13 @@ def get_flood(chat_id):
         return None
     FLOOD_VALUE = []
     for x in get:
-        if x.chat_id == chat_id:
-            FLOOD_VALUE.append(x.value)
-    return int(FLOOD_VALUE[0])
+        FLOOD_VALUE.append((x.chat_id, x.value))
+    a = -1
+    for l in FLOOD_VALUE:
+        a += 1
+        if l == chat_id:
+            return FLOOD_VALUE[a+1]
+    
 
 def set_flood(chat_id, value):
     flood = get_flood(chat_id)
