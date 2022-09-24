@@ -21,7 +21,7 @@ async def do_action(_: Client, m: Message, id):
             return await _.ban_chat_member(m.chat.id, id)
     except Exception as e:
         return await m.reply(e)
-    elif mode == 2:
+    if mode == 2:
         return await _.restriction_chat_member(m.chat.id, id, ChatPermissions())
 
 async def set_chat_flood(_, m):
