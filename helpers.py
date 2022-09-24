@@ -16,8 +16,11 @@ async def get_id(m: Message):
 
 async def do_action(_: Client, m: Message, id):
     mode = 1
-    if mode == 1:
-        return await _.ban_chat_member(m.chat.id, id)
+    try:
+        if mode == 1:
+            return await _.ban_chat_member(m.chat.id, id)
+    except Exception as e:
+        return await m.reply(e)
     elif mode == 2:
         return await _.restriction_chat_member(m.chat.id, id, ChatPermissions())
 
