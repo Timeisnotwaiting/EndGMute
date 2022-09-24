@@ -1,5 +1,5 @@
 from pyrogram.types import Message, ChatPermissions
-from database.client import get_flood_mode, set_flood_mode
+from database.client import get_flood_mode, set_flood_mode, set_flood
 from pyrogram import Client
 
 async def get_id(m: Message):
