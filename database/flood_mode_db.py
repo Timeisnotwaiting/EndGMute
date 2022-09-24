@@ -13,7 +13,7 @@ class FloodMode(BASE):
         self.value = value
         self.chat_id = chat_id
 
-Flood.__table__.create(checkfirst=True)
+FloodMode.__table__.create(checkfirst=True)
 
 def get_flood_mode(chat_id):
     get = SESSION.query(FloodMode).all()
