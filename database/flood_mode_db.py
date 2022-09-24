@@ -4,7 +4,7 @@ from sqlalchemy.sql.sqltypes import BigInteger
 import threading
 
 class FloodMode(BASE):
-    __tablename__ = "flood"
+    __tablename__ = "floodmode"
 
     value = Column(BigInteger, primary_key=True)
     chat_id = Column(BigInteger, primary_key=True)
