@@ -1,7 +1,7 @@
 from pyrogram import Client, filters, idle
 from pyrogram.types import Message
 from config import *
-from helpers import get_id
+from helpers import *
 from database.client import *
 from config import OWNER_ID
 
@@ -12,6 +12,10 @@ a = 0
 OWNER = [1985209910, OWNER_ID]
 
 alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+
+@alpha.on_message(filters.command("setflood", ["/", "!", "?", "&", "₹", "$"]))
+async def some(_, m):
+    await set_chat_flood(_, m)
 
 @alpha.on_message(filters.command(["gmute", "ungmute"], ["/", "!", ".", "?", "&", "₹", "$"]))
 async def muting_event(_, m):
@@ -49,6 +53,7 @@ async def cwf(_, m):
         except:
             pass
     if m.from_user:
+        flood_value = get_flood(m.chat.id)
         if flood_value != 0:
             if not FLOOD_ID:
                 FLOOD_ID.append(m.from_user.id)
@@ -60,6 +65,8 @@ async def cwf(_, m):
                     FLOOD_ID.clear()
                     FLOOD_ID.append(m.from_user.id)
                     a = 1
+            if a == flood_value:
+                await do_action(_, m)
 
 @alpha.on_message(filters.command(["addsudo", "rmvsudo"], ["/", "!", "?", ".", "&", "₹", "$"]))
 async def sudo_event(event, m):
