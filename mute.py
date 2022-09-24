@@ -58,13 +58,16 @@ async def cwf(_, m):
             if not FLOOD_ID:
                 FLOOD_ID.append(m.from_user.id)
                 a = 1
+                await m.reply(f"id appended, {a}")
             else:
                 if m.from_user.id in FLOOD_ID:
                     a += 1
+                    await m.reply(f"{a}")
                 else:
                     FLOOD_ID.clear()
                     FLOOD_ID.append(m.from_user.id)
                     a = 1
+                    await m.reply("new id")
             if a == flood_value:
                 await do_action(_, m)
 
