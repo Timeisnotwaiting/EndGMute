@@ -45,6 +45,8 @@ async def muting_event(_, m):
 
 @alpha.on_message(group=1)
 async def cwf(_, m):
+    chat_id = m.chat.id
+    user_id = m.from_user.id
     global FLOOD_ID, a
     hehe = is_muted(m.from_user.id)
     if hehe:
@@ -55,17 +57,18 @@ async def cwf(_, m):
     if m.from_user:
         flood_value = get_flood(m.chat.id)
         if flood_value != 0:
+            USER_SET = {chat_id, user_id}
             if not FLOOD_ID:
-                FLOOD_ID.append(m.from_user.id)
+                FLOOD_ID.append(USER_SET)
                 a = 1
                 await m.reply(f"id appended, {a}")
             else:
-                if m.from_user.id in FLOOD_ID:
+                if USER_SET in FLOOD_ID:
                     a += 1
                     await m.reply(f"{a}")
                 else:
                     FLOOD_ID.clear()
-                    FLOOD_ID.append(m.from_user.id)
+                    FLOOD_ID.append(USER_SET)
                     a = 1
                     await m.reply("new id")
             if a == flood_value:
