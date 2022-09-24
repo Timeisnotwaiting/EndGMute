@@ -15,10 +15,27 @@ async def get_id(m: Message):
     return id 
 
 async def do_action(_: Client, m: Message, id):
-    mode = get_flood_mode(m.chat.id)
+    try:
+        mode = get_flood_mode(m.chat.id)
+    except:
+        mode = 1
     if mode == 1:
         return await _.ban_chat_member(m.chat.id, id)
     elif mode == 2:
         return await _.restriction_chat_member(m.chat.id, id, ChatPermissions())
 
-async def set_chat_flood
+async def set_chat_flood(_, m):
+    chat_id = m.chat.id
+    try:
+        value = int(m.text.split()[1])
+    except Exception as e:
+        return await m.reply(f"<i>/setflood < value ></i>")
+    try:
+        set_flood(chat_id, value)
+    except:
+        return await m.reply(e)
+    return await m.reply(f"<i>flood value set to {value}</i>")
+
+
+    
+    
