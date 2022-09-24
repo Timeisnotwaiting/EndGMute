@@ -15,10 +15,7 @@ async def get_id(m: Message):
     return id 
 
 async def do_action(_: Client, m: Message, id):
-    try:
-        mode = get_flood_mode(m.chat.id)
-    except:
-        mode = 1
+    mode = 1
     if mode == 1:
         return await _.ban_chat_member(m.chat.id, id)
     elif mode == 2:
