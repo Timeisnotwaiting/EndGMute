@@ -2,3 +2,5 @@ pyrogram
 tgcrypto
 sqlalchemy
 psycopg2 
+motor
+pymongo[srv]
