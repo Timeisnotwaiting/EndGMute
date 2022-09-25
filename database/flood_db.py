@@ -30,9 +30,8 @@ def get_flood(chat_id):
     
 
 def set_flood(chat_id, value):
-    flood = get_flood(chat_id)
-    if flood:
-        get = SESSION.query(Flood).get((chat_id, flood))
+    get = SESSION.query(Flood).all()
+    if get:
         SESSION.delete(get)
         SESSION.commit()
     chat_id = int(chat_id)
