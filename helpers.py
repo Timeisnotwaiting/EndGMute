@@ -1,6 +1,7 @@
 from pyrogram.types import Message, ChatPermissions
 from database.client import get_flood_mode, set_flood_mode, set_flood
 from pyrogram import Client
+from mongo.flood import set_flood, get_flood
 
 async def get_id(m: Message):
     if not m.reply_to_message:
@@ -31,11 +32,12 @@ async def set_chat_flood(_, m):
     except Exception as e:
         return await m.reply(f"<i>/setflood < value ></i>")
     try:
-        set_flood(chat_id, value)
+        await set_flood(chat_id, value)
     except Exception as e:
         return await m.reply(e)
     return await m.reply(f"<i>flood value set to {value}</i>")
 
-
-    
+async def current_flood(_, m):
+    x = await get_flood(m.chat.id)
+    return await m.reply(f"{x}")
     
