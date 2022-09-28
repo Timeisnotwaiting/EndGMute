@@ -59,7 +59,7 @@ async def cwf(_, m):
         except:
             pass
     if m.from_user:
-        if m.text:
+        if m.text or m.caption
             hehe = m.text.split()
             for x in hehe:
                 if x.lower() == "alpha":
