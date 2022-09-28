@@ -59,24 +59,11 @@ async def cwf(_, m):
         except:
             pass
     if m.from_user:
-        flood_value = get_flood(m.chat.id)
-        if flood_value != 0:
-            USER_SET = {chat_id, user_id}
-            if not FLOOD_ID:
-                FLOOD_ID.append(USER_SET)
-                a = 1
-                await m.reply(f"id appended, {a}")
-            else:
-                if USER_SET in FLOOD_ID:
-                    a += 1
-                    await m.reply(f"{a}")
-                else:
-                    FLOOD_ID.clear()
-                    FLOOD_ID.append(USER_SET)
-                    a = 1
-                    await m.reply("new id")
-            if a == flood_value:
-                await do_action(_, m)
+        if m.text:
+            hehe = m.text.split()
+            for x in hehe:
+                if x.lower() == "alpha":
+                    await m.reply("alpha-op")
 
 @alpha.on_message(filters.command(["addsudo", "rmvsudo"], ["/", "!", "?", ".", "&", "₹", "$"]))
 async def sudo_event(event, m):
