@@ -3,6 +3,7 @@ from database.client import get_flood_mode, set_flood_mode, set_flood
 from pyrogram import Client
 from mongo.flood import set_flood, get_flood
 from PIL import Image, ImageFont, ImageDraw
+import os
 
 async def get_id(m: Message):
     if not m.reply_to_message:
