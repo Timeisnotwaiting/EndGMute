@@ -2,6 +2,7 @@ from pyrogram.types import Message, ChatPermissions
 from database.client import get_flood_mode, set_flood_mode, set_flood
 from pyrogram import Client
 from mongo.flood import set_flood, get_flood
+from PIL import Image, ImageFont, ImageDraw
 
 async def get_id(m: Message):
     if not m.reply_to_message:
@@ -146,10 +147,6 @@ async def drawText(image_path, text):
     return webp_file
 
 async def memify_event(_, m):
-    xD = m.from_user.is_self:
-    check = await is_sudo(m.from_user.id)
-    if not xD and not check:
-        return 
     if not m.reply_to_message:
         return await m.reply(m, f"<i>reply to a sticker..!</i>")
     if not m.reply_to_message.sticker:
