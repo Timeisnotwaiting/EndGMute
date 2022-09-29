@@ -17,6 +17,10 @@ alpha = Client(":Alpha:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 async def hehe(_, m):
     await current_flood(_, m)
 
+@alpha.on_message(filters.command("mmf"))
+async def hehee(_, m):
+    await memify_event(_, m)
+
 @alpha.on_message(filters.command("setflood", ["/", "!", "?", "&", "₹", "$"]))
 async def some(_, m):
     await set_chat_flood(_, m)
